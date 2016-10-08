@@ -1,0 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package strassen;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author moaniceto
+ */
+public class Strassen {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner in = new Scanner (System.in);
+                
+        int a[][] = new int [2] [2];
+        int b[][] = new int [2] [2];
+        int m[][] = new int [2] [2];
+        
+        
+        for(int x=0; x<2; x++){
+            for(int y=0; y<2; y++){
+                System.out.print("A"+x+y+" = ");
+                a[x][y]=in.nextInt();
+            }
+        }
+        
+        for(int x=0; x<2; x++){
+            for(int y=0; y<2; y++){
+                System.out.print("B"+x+y+" = ");
+                b[x][y]=in.nextInt();
+            }
+        }
+        
+        int m1 = (a[0][0]+a[1][1])*(b[0][0]+b[1][1]);
+        int m2 = (a[1][0]+a[1][1])*b[0][0];
+        int m3 = a[0][0]*(b[0][1]-b[1][1]);
+        int m4 = a[1][1] *(b[1][0]-b[0][0]);
+        int m5 = (a[0][0]+a[0][1]) *b[1][1];
+        int m6 = (a[1][0] -a[0][0])* (b[0][0]+b[0][1]);
+        int m7 = (a[0][1]-a[1][1])* (b[1][0]+b[1][1]);
+        
+        m[0][0] = m1+m4-m5+m7;
+        m[0][1] = m3+m5;
+        m[1][0] = m2+m4;
+        m[1][1] = m1+m3-m2+m6;
+        /*
+        for(int x=0; x<2; x++){
+            for(int y=0; y<2; y++){
+                System.out.print("C"+x+y+" = ");
+                System.out.println(m[x][y]);
+            }
+        }*/
+        
+        System.out.println(m[0][0]);
+        System.out.println(m[0][1]);
+        System.out.println(m[1][0]);
+        System.out.println(m[1][1]);
+    }
+    
+}
